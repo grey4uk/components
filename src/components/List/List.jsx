@@ -1,22 +1,18 @@
-import React from "react";
-import * as css from "../../App.module.css";
-import { SquareInit } from "../helpers/function";
+import { Component } from 'react';
+import ListItem from '../ListItem';
 
-const List = ({ transactions }) => {
-  const { colored, unColored } = css;
-  const Square = new SquareInit(10, 10);
-  console.log("Square.area :>> ", Square.area);
-  return (
-    <>
-      {transactions.map((el, idx) => (
-        <li key={el.id} className={idx % 2 === 0 ? unColored : colored}>
-          <h3>{el.type}</h3>
-          <span>{el.amount}</span>
-          <span>{el.currency}</span>
-        </li>
-      ))}
-    </>
-  );
-};
-
-export default List;
+export class List extends Component {
+  render() {
+    const { list } = this.props;
+    return (
+      <>
+        <h2>Users List</h2>
+        <ul>
+          {list.map((el) => (
+            <ListItem item={el} />
+          ))}
+        </ul>
+      </>
+    );
+  }
+}
